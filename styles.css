@@ -1,3 +1,4 @@
+/* Themes: data-theme on <html> = light | white | dark | system (set by theme.js) */
 :root {
   --fau-blue: #003366;
   --fau-blue-light: #0b4a85;
@@ -8,17 +9,43 @@
   --text: #1a2433;
   --muted: #5b6b7f;
   --border: #dde4ea;
+  --rain: #0b4a85;
+  --chip: #f3f6f9;
   --shadow: 0 6px 20px rgba(0, 51, 102, 0.08);
+  color-scheme: light;
+}
+
+:root[data-theme="white"] {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --border: #e4e9ee;
+  --chip: #f5f7fa;
+  --shadow: 0 2px 10px rgba(0, 51, 102, 0.06);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b1522;
+  --card: #12213a;
+  --text: #e9eef4;
+  --muted: #9fb0c3;
+  --border: #22385a;
+  --rain: #7fb4ea;
+  --chip: #0b1522;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]), :root[data-theme="system"] {
     --bg: #0b1522;
     --card: #12213a;
     --text: #e9eef4;
     --muted: #9fb0c3;
     --border: #22385a;
+    --rain: #7fb4ea;
+    --chip: #0b1522;
     --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
   }
 }
 
@@ -58,6 +85,15 @@ body {
 .site-header h1 { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: 0.5px; }
 .tagline { margin: 2px 0 0; color: var(--fau-silver); font-size: 0.85rem; }
 
+.header-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.theme-picker {
+  appearance: none; -webkit-appearance: none;
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23fff'/%3E%3C/svg%3E") no-repeat right 12px center;
+  color: #fff; border: 2px solid #fff; border-radius: 999px;
+  padding: 6px 30px 6px 14px; font: inherit; font-weight: 700; cursor: pointer;
+}
+.theme-picker option { color: #1a2433; background: #fff; }
+
 .unit-toggle { display: flex; border: 2px solid #fff; border-radius: 999px; overflow: hidden; }
 .unit-toggle button {
   background: transparent; color: #fff; border: 0;
@@ -83,6 +119,18 @@ main {
   border: 1px solid var(--border);
 }
 .card h3 { margin: 0 0 12px; color: var(--fau-red); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Welcome */
+.welcome {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--card); border: 1px solid var(--border);
+  border-left: 6px solid var(--fau-red);
+  border-radius: 16px; padding: 16px 20px; margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.welcome-owl { font-size: 2.2rem; line-height: 1; }
+.welcome h2 { margin: 0; font-size: 1.3rem; color: var(--text); }
+.welcome p { margin: 4px 0 0; color: var(--muted); }
 
 /* Search */
 .search { position: relative; display: flex; gap: 8px; }
@@ -112,7 +160,7 @@ main {
   width: 100%; text-align: left; background: none; border: 0;
   padding: 10px; border-radius: 8px; font: inherit; color: var(--text); cursor: pointer;
 }
-.search-results button:hover, .search-results button:focus { background: var(--bg); outline: none; }
+.search-results button:hover, .search-results button:focus { background: var(--chip); outline: none; }
 .search-results small { color: var(--muted); }
 
 .status { min-height: 1.2em; margin: 12px 0 0; color: var(--muted); }
@@ -144,13 +192,12 @@ main {
 .hourly { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
 .hour {
   flex: 0 0 76px; text-align: center; padding: 10px 6px;
-  border-radius: 12px; background: var(--bg); scroll-snap-align: start;
+  border-radius: 12px; background: var(--chip); scroll-snap-align: start;
 }
 .hour .h-time { font-size: 0.8rem; color: var(--muted); }
 .hour .h-icon { font-size: 1.6rem; margin: 6px 0; }
 .hour .h-temp { font-weight: 700; }
-.hour .h-rain { font-size: 0.75rem; color: var(--fau-blue-light); }
-@media (prefers-color-scheme: dark) { .hour .h-rain { color: #7fb4ea; } }
+.hour .h-rain { font-size: 0.75rem; color: var(--rain); }
 
 /* Daily */
 .daily { list-style: none; margin: 0; padding: 0; }
@@ -164,8 +211,7 @@ main {
 .d-day { font-weight: 700; white-space: nowrap; }
 .d-icon { font-size: 1.5rem; text-align: center; }
 .d-desc { color: var(--muted); font-size: 0.9rem; }
-.d-rain { font-size: 0.85rem; color: var(--fau-blue-light); }
-@media (prefers-color-scheme: dark) { .d-rain { color: #7fb4ea; } }
+.d-rain { font-size: 0.85rem; color: var(--rain); }
 .d-range { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
 .d-range .lo { color: var(--muted); }
 .d-range .hi { font-weight: 700; }

@@ -6,6 +6,7 @@
   <title>FAU Owl Weather</title>
   <meta name="description" content="Weather forecast for Boca Raton and anywhere else, powered by Open-Meteo. Florida Atlantic University themed." />
   <meta name="theme-color" content="#003366" />
+  <script src="theme.js"></script>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,13 +22,30 @@
         <p class="tagline">Florida Atlantic University &middot; Boca Raton</p>
       </div>
     </div>
-    <div class="unit-toggle" role="group" aria-label="Temperature units">
-      <button type="button" data-unit="fahrenheit" class="active">&deg;F</button>
-      <button type="button" data-unit="celsius">&deg;C</button>
+    <div class="header-controls">
+      <label for="theme-picker" class="visually-hidden">Theme</label>
+      <select id="theme-picker" class="theme-picker">
+        <option value="system">&#x1F4BB; System</option>
+        <option value="light">&#x2600;&#xFE0F; Light</option>
+        <option value="white">&#x2B1C; White</option>
+        <option value="dark">&#x1F319; Dark</option>
+      </select>
+      <div class="unit-toggle" role="group" aria-label="Temperature units">
+        <button type="button" data-unit="fahrenheit" class="active">&deg;F</button>
+        <button type="button" data-unit="celsius">&deg;C</button>
+      </div>
     </div>
   </header>
 
   <main>
+    <section class="welcome" aria-label="Welcome">
+      <span class="welcome-owl" aria-hidden="true">&#x1F989;</span>
+      <div>
+        <h2 id="welcome-title">Welcome, Jazmin!</h2>
+        <p id="welcome-sub">Here's your forecast from Boca Raton. Go Owls!</p>
+      </div>
+    </section>
+
     <form id="search-form" class="search" autocomplete="off" role="search">
       <label for="search-input" class="visually-hidden">Search for a city</label>
       <input id="search-input" type="search" placeholder="Search a city (e.g. Jupiter, Miami, Davie)" />

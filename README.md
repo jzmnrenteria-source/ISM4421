@@ -8,7 +8,8 @@ It uses the free [Open-Meteo](https://open-meteo.com/) APIs, so there are **no A
 - Hourly forecast for the next 24 hours
 - 7-day forecast with rain chance and high/low
 - City search (Open-Meteo Geocoding API), "use my location", and a 🦉 button to jump back to Boca
-- °F / °C toggle (remembered in your browser)
+- °F / °C toggle and System / Light / White / Dark themes (remembered in your browser)
+- Personalized welcome message for Jazmin
 - FAU colors (FAU Blue `#003366`, FAU Red `#CC0000`, silver), mobile-friendly, dark-mode aware
 
 ## Project structure
@@ -16,6 +17,7 @@ It uses the free [Open-Meteo](https://open-meteo.com/) APIs, so there are **no A
 index.html        # page markup
 styles.css        # FAU theme
 app.js            # Open-Meteo API calls + rendering
+theme.js          # applies the saved theme before the page draws
 assets/           # FAU logo + favicon (SVG)
 netlify.toml      # Netlify config (static site, no build step)
 ```
