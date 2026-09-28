@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="FAU">
+  <circle cx="60" cy="60" r="58" fill="#003366" stroke="#CC0000" stroke-width="4"/>
+  <circle cx="60" cy="60" r="49" fill="none" stroke="#C4CED4" stroke-width="1.5"/>
+  <text x="60" y="72" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="38" fill="#ffffff" letter-spacing="1">FAU</text>
+  <rect x="30" y="80" width="60" height="3" fill="#CC0000"/>
+  <text x="60" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="9" fill="#C4CED4" letter-spacing="2">OWLS</text>
+</svg>
