@@ -286,11 +286,6 @@
     savePref("theme", themePicker.value);
   });
 
-  // --- Welcome message ---
-  const hour = new Date().getHours();
-  const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-  $("welcome-title").textContent = `${greeting}, Jazmin! Welcome back.`;
-
   syncUnitButtons();
   load(BOCA);
 })();

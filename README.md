@@ -9,7 +9,8 @@ It uses the free [Open-Meteo](https://open-meteo.com/) APIs, so there are **no A
 - 7-day forecast with rain chance and high/low
 - City search (Open-Meteo Geocoding API), "use my location", and a 🦉 button to jump back to Boca
 - °F / °C toggle and System / Light / White / Dark themes (remembered in your browser)
-- Personalized welcome message for Jazmin
+- "Continue with Google" sign-in (Supabase Auth) that shows the signed-in user's name and profile picture, plus a guest option
+- Personalized welcome message using the signed-in user's first name
 - FAU colors (FAU Blue `#003366`, FAU Red `#CC0000`, silver), mobile-friendly, dark-mode aware
 
 ## Project structure
@@ -18,6 +19,8 @@ index.html        # page markup
 styles.css        # FAU theme
 app.js            # Open-Meteo API calls + rendering
 theme.js          # applies the saved theme before the page draws
+auth.js           # Google sign-in via Supabase, login screen, user name/photo
+vendor/           # Supabase JS library (v2.118.0), bundled so no CDN is needed
 assets/           # FAU logo + favicon (SVG)
 netlify.toml      # Netlify config (static site, no build step)
 ```
@@ -45,6 +48,15 @@ npm install -g netlify-cli
 netlify login
 netlify deploy --prod --dir .
 ```
+
+## Google sign-in setup (Supabase)
+Sign-in uses the Supabase project `kukglvtcsiovqvrahgmi`. The project URL and publishable key are in `auth.js`
+(the publishable key is meant to be public). For sign-in to work on the live site:
+1. **Google Cloud Console → OAuth client:** add `https://kukglvtcsiovqvrahgmi.supabase.co/auth/v1/callback`
+   as an authorized redirect URI.
+2. **Supabase → Authentication → Sign In / Providers → Google:** turn it on and paste the Google client ID and secret.
+3. **Supabase → Authentication → URL Configuration:** set the Site URL to your Netlify URL and add it
+   (e.g. `https://your-site.netlify.app/**`) to Redirect URLs. Add `http://localhost:8000/**` for local testing.
 
 ## Using the official FAU logo
 `assets/fau-logo.svg` is a simple FAU-colored badge. To use the official logo, replace that file

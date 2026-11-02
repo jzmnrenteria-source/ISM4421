@@ -120,6 +120,61 @@ main {
 }
 .card h3 { margin: 0 0 12px; color: var(--fau-red); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
 
+/* Auth: hide the app until we know whether someone is signed in */
+body.auth-pending main,
+body.auth-pending .login-screen,
+body.auth-pending .header-controls,
+body.signed-out main,
+body.signed-out .header-controls { display: none; }
+body:not(.signed-out) .login-screen { display: none; }
+
+.login-screen {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 40px 16px;
+}
+.login-card {
+  width: 100%; max-width: 400px; text-align: center;
+  background: var(--card); border: 1px solid var(--border);
+  border-top: 6px solid var(--fau-red);
+  border-radius: 18px; padding: 32px 24px; box-shadow: var(--shadow);
+}
+.login-logo { width: 88px; height: 88px; }
+.login-card h2 { margin: 14px 0 6px; font-size: 1.4rem; color: var(--text); }
+.login-sub { margin: 0 0 24px; color: var(--muted); }
+.google-btn {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 12px 16px; font: inherit; font-weight: 600; font-size: 1rem;
+  background: #fff; color: #1f1f1f; border: 1px solid #747775; border-radius: 999px;
+  cursor: pointer;
+}
+.google-btn:hover { background: #f2f6fc; }
+.google-btn:disabled { opacity: 0.6; cursor: wait; }
+.guest-btn {
+  margin-top: 14px; background: none; border: 0; padding: 6px;
+  font: inherit; color: var(--muted); text-decoration: underline; cursor: pointer;
+}
+.login-error { margin: 14px 0 0; color: var(--fau-red); font-weight: 600; font-size: 0.9rem; }
+
+.user-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.12); border-radius: 999px; padding: 4px 6px 4px 4px;
+}
+.user-chip[hidden] { display: none; }
+.user-avatar {
+  width: 32px; height: 32px; border-radius: 50%; object-fit: cover;
+  border: 2px solid #fff; flex: 0 0 auto;
+}
+.user-initials {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--fau-red); color: #fff; font-weight: 700; font-size: 0.8rem;
+}
+.user-avatar[hidden] { display: none; }
+.user-name { font-weight: 700; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip-btn {
+  background: #fff; color: var(--fau-blue); border: 0; border-radius: 999px;
+  padding: 5px 12px; font: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+}
+
 /* Welcome */
 .welcome {
   display: flex; align-items: center; gap: 14px;
